@@ -1,0 +1,109 @@
+/* Общие стили */
+:root {
+    --bg: #ffffff;
+    --text: #333333;
+    --menu-bg: #f4f4f4;
+    --menu-link-bg: #eaeaea;
+    --menu-link-hover: #dcdcdc;
+    --shadow: rgba(0, 0, 0, 0.05);
+  }
+  
+  /* Темная тема */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1e1e1e;
+      --text: #eeeeee;
+      --menu-bg: #2a2a2a;
+      --menu-link-bg: #3a3a3a;
+      --menu-link-hover: #505050;
+      --shadow: rgba(0, 0, 0, 0.2);
+    }
+  }
+  
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--menu-bg);
+    padding: 20px 24px;
+    box-shadow: 0 2px 6px var(--shadow);
+    flex-wrap: wrap;
+    transition: background-color 0.3s ease;
+  }
+  
+  .navbar .title {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  
+  .menu-toggle {
+    display: none;
+    font-size: 26px;
+    cursor: pointer;
+    user-select: none;
+    color: var(--text);
+  }
+  
+  .menu {
+    display: flex;
+    gap: 16px;
+    transition: max-height 0.3s ease;
+  }
+  
+  .menu a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    color: var(--text);
+    background-color: var(--menu-link-bg);
+    transition: background-color 0.25s ease;
+  }
+  
+  .menu a:hover {
+    background-color: var(--menu-link-hover);
+  }
+  
+  /* Иконки */
+  .menu a i {
+    font-size: 18px;
+  }
+  
+  /* Адаптивный стиль */
+  @media (max-width: 800px) {
+    .menu-toggle {
+      display: block;
+    }
+  
+    .menu {
+      flex-direction: column;
+      width: 100%;
+      margin-top: 12px;
+      max-height: 0;
+      overflow: hidden;
+    }
+  
+    .menu.active {
+      max-height: 500px; /* достаточно для 3–4 пунктов */
+    }
+  
+    .menu a {
+      width: 100%;
+      text-align: left;
+      background-color: var(--menu-link-bg);
+      border-top: 1px solid var(--menu-link-hover);
+    }
+  }
+  
