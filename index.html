@@ -1,38 +1,98 @@
+<script>
+        function checkPhrase() {
+            const correctPhrase = "Ground, Speedbird 123, request engine start.";
+            const userInput = document.getElementById("userInput").value.trim();
+            const feedback = document.getElementById("feedback");
+
+            if (userInput.toLowerCase() === correctPhrase.toLowerCase()) {
+                feedback.textContent = "Отлично! Фраза введена правильно.";
+                feedback.classList.remove("text-red-600");
+                feedback.classList.add("text-green-600");
+            } else {
+                feedback.textContent = "Неправильно. Попробуйте ещё раз. Образец: " + correctPhrase;
+                feedback.classList.remove("text-green-600");
+                feedback.classList.add("text-red-600");
+            }
+        }
+    </script>
+</body>
+</html>
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Курс по фразеологии радиообмена</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интерактивный курс по авиационному английскому</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <header>
-    <h1>Фразеология радиообмена</h1>
-    <nav>
-      <ul>
-        <li><a href="#lesson1">Урок 1</a></li>
-        <li><a href="#lesson2">Урок 2</a></li>
-      </ul>
-    </nav>
-  </header>
+<body class="bg-gray-100 font-sans">
+    <header class="bg-blue-600 text-white py-6">
+        <div class="container mx-auto text-center">
+            <h1 class="text-3xl font-bold">Интерактивный курс по авиационному английскому</h1>
+            <p class="mt-2 text-lg">Подготовка к 4 уровню ICAO</p>
+        </div>
+    </header>
 
-  <main>
-    <section id="lesson1">
-      <h2>Урок 1: Введение</h2>
-      <p>Здесь будет информация о базовой терминологии и правилах радиообмена.</p>
+    <section class="container mx-auto py-8">
+        <h2 class="text-2xl font-semibold mb-4">О курсе</h2>
+        <p class="text-gray-700 mb-4">
+            Этот интерактивный курс поможет подготовиться к экзамену на 4 уровень ICAO. 
+            Вы будете практиковать авиационную терминологию, радиообмен и навыки общения в нештатных ситуациях.
+        </p>
     </section>
-    <section id="lesson2">
-      <h2>Урок 2: Примеры диалогов</h2>
-      <audio controls>
-        <source src="assets/lesson2-dialog.mp3" type="audio/mpeg">
-        Ваш браузер не поддерживает аудиоплеер.
-      </audio>
-    </section>
-  </main>
 
-  <footer>
-    <p>© 2025 Курс по радиообмену</p>
-  </footer>
-</body>
-</html>
+    <section class="container mx-auto py-8">
+        <h2 class="text-2xl font-semibold mb-4">Модули курса</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-bold mb-2">Модуль 1: Основы</h3>
+                <p class="text-gray-700">Изучение терминов, произношение, восприятие радиопереговоров.</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-bold mb-2">Модуль 2: Радиообмен</h3>
+                <p class="text-gray-700">Практика стандартной фразеологии ICAO и диалогов.</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-bold mb-2">Модуль 3: Общий английский</h3>
+                <p class="text-gray-700">Чтение документации, разговорные навыки.</p>
+            </div>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-xl font-bold mb-2">Модуль 4: Подготовка к экзамену</h3>
+                <p class="text-gray-700">Симуляция теста и стрессовые сценарии.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="container mx-auto py-8">
+        <h2 class="text-2xl font-semibold mb-4">Интерактивное задание: Радиообмен</h2>
+        <div class="bg-white p-6 rounded-lg shadow-md">
+            <h3 class="text-xl font-bold mb-2">Задание 1: Запрос на запуск двигателя</h3>
+            <p class="text-gray-700 mb-4">
+                Прослушайте образец фразы, повторите и введите её в поле ниже. Нажмите "Проверить", чтобы узнать, правильно ли вы ввели.
+            </p>
+            <audio id="audioSample" controls class="mb-4">
+                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+                Ваш браузер не поддерживает аудио.
+            </audio>
+            <p class="text-gray-700 font-mono mb-2">Образец: "Ground, Speedbird 123, request engine start."</p>
+            <input id="userInput" type="text" class="w-full p-2 border rounded mb-4" placeholder="Введите фразу здесь">
+            <button onclick="checkPhrase()" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Проверить</button>
+            <p id="feedback" class="mt-4 text-gray-700"></p>
+        </div>
+    </section>
+
+    <section class="container mx-auto py-8">
+        <h2 class="text-2xl font-semibold mb-4">Ресурсы</h2>
+        <ul class="list-disc pl-5 text-gray-700">
+            <li><a href="https://www.liveatc.net" class="text-blue-600 hover:underline">LiveATC.net</a> — прослушивание радиопереговоров.</li>
+            <li>Книга "Aviation English" by Henry Emery and Andy Roberts.</li>
+            <li>Приложения: PilotEnglish, Aviation English.</li>
+            <li>Симуляторы: X-Plane, Microsoft Flight Simulator.</li>
+        </ul>
+    </section>
+
+    <footer class="bg-blue-600 text-white py-4">
+        <div class="container mx-auto text-center">
+            <p>Удачи в подготовке к 4 уровню ICAO! ✈️</p>
+        </div>
+    </footer>
