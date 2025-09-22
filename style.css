@@ -54,7 +54,7 @@ body {
   padding: 10px 20px;
   color: #ffffff;
   text-decoration: none;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, border-left 0.3s;
   border-left: 4px solid transparent;
 }
 
