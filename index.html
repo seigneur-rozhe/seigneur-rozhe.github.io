@@ -1,82 +1,83 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Боковое меню</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <title>Aviation Phraseology Course</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js"></script>
 </head>
 <body>
-  <section class="menu">
-    <!-- Логотип -->
-    <a href="#" class="menu__logo logo">Drivefile</a>
-
-    <!-- Основное меню -->
-    <ul class="menu__list list">
-      <li class="menu__item item">
-        <a href="#" class="menu__link link">
-          <img src="./img/home.svg" alt="Home" />
-          <span>Home</span>
+  <!-- Боковое меню -->
+  <div class="sidebar">
+    <!-- Логотип вверху -->
+    <div class="logo">
+      <a class="logo-link" href="#" onclick="loadPage('learn')">
+        <img class="logo-image" src="assets/logo.svg" alt="Logo" class="logo-img">
+      </a>
+    </div>
+    <!-- Контейнер для кнопок навигации -->
+    <div class="nav">
+      <!-- Кнопка 1 -->
+      <div class="nav-button">
+        <a class="nav-link" href="#" onclick="loadPage('learn')">
+          <span class="nav-button-content">
+            <div class="nav-button-icon">
+              <img src="assets/button1.svg" alt="Learn Icon" class="icon-img">
+            </div>
+            <span class="nav-button-text">Теория</span>
+          </span>
         </a>
-      </li>
-      <li class="menu__item item">
-        <a href="#" class="menu__link link">
-          <img src="./img/recents.svg" alt="Recents" />
-          <span>Recents</span>
+      </div>
+      <!-- Кнопка 2 -->
+      <div class="nav-button">
+        <a class="nav-link" href="#" onclick="loadPage('dictionary')">
+          <span class="nav-button-content">
+            <div class="nav-button-icon">
+              <img src="https://d35aaqx5ub95lt.cloudfront.net/vendor/b05052818a7e6be25b105c93e13bb21d.svg" alt="Dictionary Icon" class="icon-img">
+            </div>
+            <span class="nav-button-text">Словарик</span>
+          </span>
         </a>
-      </li>
-      <li class="menu__item item">
-        <a href="#" class="menu__link link">
-          <img src="./img/starred.svg" alt="Starred" />
-          <span>Starred</span>
+      </div>
+      <!-- Кнопка 3 -->
+      <div class="nav-button">
+        <a class="nav-link" href="#" onclick="loadPage('tests')">
+          <span class="nav-button-content">
+            <div class="nav-button-icon">
+              <img src="https://d35aaqx5ub95lt.cloudfront.net/vendor/ca9178510134b4b0893dbac30b6670aa.svg" alt="Test Icon" class="icon-img">
+            </div>
+            <span class="nav-button-text">Тестирование</span>
+          </span>
         </a>
-      </li>
-      <li class="menu__item item">
-        <a href="#" class="menu__link link">
-          <img src="./img/photos.svg" alt="Photos" />
-          <span>Photos</span>
+      </div>
+      <!-- Кнопка 4 -->
+      <div class="nav-button">
+        <a class="nav-link" href="#" onclick="loadPage('ai-help')">
+          <span class="nav-button-content">
+            <div class="nav-button-icon">
+              <img src="https://d35aaqx5ub95lt.cloudfront.net/vendor/7159c0b5d4250a5aea4f396d53f17f0c.svg" alt="AI Icon" class="icon-img">
+            </div>
+            <span class="nav-button-text">Нейросеть</span>
+          </span>
         </a>
-      </li>
-      <li class="menu__item item">
-        <a href="#" class="menu__link link">
-          <img src="./img/shared.svg" alt="Shared" />
-          <span>Shared</span>
+      </div>
+      <!-- Кнопка 5 -->
+      <div class="nav-button">
+        <a class="nav-link" href="#" onclick="loadPage('profile')">
+          <span class="nav-button-content">
+            <div class="nav-button-icon">
+              <img src="https://d35aaqx5ub95lt.cloudfront.net/vendor/24e0dcdc06870ead47b3600f0d41eb5b.svg" alt="Profile Icon" class="icon-img">
+            </div>
+            <span class="nav-button-text">Профиль</span>
+          </span>
         </a>
-      </li>
-      <li class="menu__item item">
-        <a href="#" class="menu__link link">
-          <img src="./img/file.svg" alt="File" />
-          <span>File</span>
-        </a>
-      </li>
-      <li class="menu__item item">
-        <a href="#" class="menu__link link">
-          <img src="./img/delete.svg" alt="Delete" />
-          <span>Delete</span>
-        </a>
-      </li>
-    </ul>
-
-    <!-- Админ блок -->
-    <ul class="menu__admin admin">
-      <li class="admin__item item">
-        <a href="#" class="admin__link link">
-          <img src="./img/get.svg" alt="Get help" />
-          <span>Get help</span>
-        </a>
-      </li>
-      <li class="admin__item item">
-        <a href="#" class="admin__link link">
-          <img src="./img/logout.svg" alt="Logout" />
-          <span>Logout</span>
-        </a>
-      </li>
-    </ul>
-  </section>
-
-  <section class="content">
-    <h1>Добро пожаловать в Drivefile</h1>
-    <p>Здесь будет содержимое вашей страницы.</p>
-  </section>
+      </div>
+    </div>
+  </div>
+  <div id="main-content"></div>
+  <script src="script.js"></script>
 </body>
 </html>
