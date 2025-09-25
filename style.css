@@ -1,121 +1,200 @@
-/* === ОБНУЛЕНИЕ === */
+/* Глобально применяем box-sizing для всех элементов */
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 
+/* Обнуляем отступы body и задаём базовый шрифт и фон */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  display: flex;
+  margin: 0; /* Убираем стандартные отступы браузера */
+  font-family: Arial, sans-serif; /* Базовый шрифт для всего сайта */
+  background: rgb(19, 31, 36); /* Тёмный фон для страницы */
+}
+
+/* Сайдбар (боковое меню) */
+.sidebar {
+  position: fixed; /* Фиксируем сайдбар слева */
+  left: 0; /* Прижимаем к левому краю экрана */
+  top: 0; /* Прижимаем к верхнему краю */
+  width: 256px; /* Фиксированная ширина сайдбара */
+  height: 100vh; /* Высота на весь экран */
+  padding: 0px 16px; /* Отступы слева и справа 16px */
+  border-right: 2px solid rgb(55, 70, 79); /* Граница справа */
+}
+
+/* Контейнер логотипа */
+.logo {
+  height: 30px; /* Высота логотипа */
+  padding: 32px 0 30px 16px; /* Отступы: сверху 32px, снизу 30px, слева 16px */
+  box-sizing: content-box; /* Padding не входит в высоту */
+}
+
+/* Ссылка логотипа */
+.logo-link {
+  display: block; /* Блочный элемент для корректной компоновки */
+  height: 100%; /* Занимает всю высоту контейнера */
+  width: fit-content; /* Ширина по содержимому (логотипу) */
+}
+
+/* Изображение логотипа */
+.logo-image {
+  height: 30px; /* Высота логотипа */
+  width: 128px; /* Ширина логотипа */
+}
+
+/* Контейнер для кнопок навигации */
+.nav {
+  width: 100%; /* Занимает всю полезную ширину .sidebar (256px - 16px = 240px) */
+}
+
+/* Кнопка навигации */
+.nav-button {
+  display: block; /* Блочный элемент, занимает всю ширину .nav */
+  width: 100%; /* Полная ширина .nav (224px на десктопе) */
+  margin-bottom: 12px; /* Интервал между кнопками по вертикали */
+  background-color: rgb(19, 31, 36); /* Тёмный фон для неактивных кнопок */
+  border: 2px solid rgb(19, 31, 36); /* Граница для неактивных кнопок */
+  border-radius: 12px; /* Скругленные углы */
+  cursor: pointer; /* Курсор "рука" при наведении */
+  transition: all 0.3s ease; /* Плавная анимация для изменений фона и границы */
+}
+
+/* Эффект наведения для неактивных кнопок */
+.nav-button:not(.active):hover {
+  background-color: rgb(36, 52, 60); /* Чуть светлее фон при наведении */
+  border-color: rgb(36, 52, 60); /* Чуть светлее граница при наведении */
+}
+
+/* Стили для активной кнопки */
+.nav-button.active {
+  background-color: rgb(40, 60, 70); /* Светлее фон для активной кнопки */
+  border-color: rgb(63, 133, 167); /* Светлее граница для активной кнопки */
+}
+
+/* Убираем отступ снизу для последней кнопки */
+.nav-button:last-child {
+  margin-bottom: 0; /* Предотвращаем лишний отступ внизу .nav */
+}
+
+/* Ссылка внутри кнопки */
+.nav-link {
+  text-decoration: none; /* Убираем подчёркивание ссылки */
+  display: block; /* Блочный элемент для полной ширины */
+  width: 100%; /* Занимает всю ширину .nav-button */
+}
+
+/* Контент кнопки (иконка + текст) */
+.nav-button-content {
+  display: flex; /* Flexbox для выравнивания иконки и текста */
+  align-items: center; /* Вертикальное центрирование */
+  gap: 10px; /* Отступ между иконкой и текстом */
+  padding: 8px 12px; /* Внутренние отступы: 8px сверху/снизу, 12px слева/справа */
+  width: 100%; /* Ограничиваем ширину до ширины .nav-button */
+}
+
+/* Контейнер иконки */
+.nav-button-icon {
+  display: flex; /* Flexbox для центрирования иконки */
+}
+
+/* Изображение иконки */
+.icon-img {
+  width: 24px; /* Фиксированная ширина иконки */
+  height: 24px; /* Фиксированная высота иконки */
+  object-fit: contain; /* Иконка не искажается */
+}
+
+/* Текст кнопки */
+.nav-button-text {
+  font-family: 'Roboto', Arial, sans-serif; /* Шрифт из Google Fonts + резервный */
+  color: rgb(73, 192, 248); /* Голубой цвет текста */
+  font-size: 15px; /* Размер текста */
+  font-weight: 700; /* Жирный текст */
+  letter-spacing: 0.8px; /* Межбуквенный интервал */
+  text-transform: uppercase; /* Текст в верхнем регистре */
+  transition: none; /* Без анимации для текста */
+  user-select: none; /* Запрещаем выделение текста */
+}
+
+/* Основной контент страницы */
+#main-content {
+  margin-left: 256px; /* Отступ для .sidebar на десктопе */
+  padding: 20px; /* Внутренние отступы */
+  max-width: calc(100% - 256px); /* Ограничиваем ширину, учитывая .sidebar */
+  overflow-x: auto; /* Горизонтальная прокрутка при переполнении */
   height: 100vh;
-  background-color: #f4f4f4;
+  color: rgb(210, 210, 210); /* Цвет текста содержимого разделов */
 }
 
-/* === МЕНЮ === */
-.menu {
-  width: 250px;
-  background-color: #1e1e2f;
-  color: #ffffff;
-  padding: 20px 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+/* Ограничиваем дочерние элементы в #main-content */
+#main-content * {
+  max-width: 100%; /* Ограничиваем ширину всех дочерних элементов */
+  position: relative; /* Предотвращаем абсолютное позиционирование без контекста */
 }
 
-.menu__logo {
-  font-size: 24px;
-  font-weight: bold;
-  color: #ffffff;
-  text-decoration: none;
-  padding: 0 20px;
-  margin-bottom: 30px;
-  display: block;
+/* Секция авторизации */
+.auth-section {
+  padding: 20px; /* Отступы для секции */
 }
 
-/* === СПИСКИ === */
-.menu__list,
-.menu__admin {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+/* Форма авторизации */
+.auth-section form {
+  margin-bottom: 20px; /* Отступ снизу для формы */
 }
 
-.menu__item,
-.admin__item {
-  margin-bottom: 10px;
+/* Поля ввода и кнопки авторизации */
+.auth-section input,
+.auth-section button {
+  display: block; /* Блочный элемент */
+  margin: 10px 0; /* Отступы сверху и снизу */
+  padding: 10px; /* Внутренние отступы */
 }
 
-/* === ССЫЛКИ === */
-.menu__link,
-.admin__link {
-  display: flex;
-  align-items: center;
-  padding: 10px 20px;
-  color: #ffffff;
-  text-decoration: none;
-  transition: background-color 0.3s, border-left 0.3s;
-  border-left: 4px solid transparent;
+/* Поля ввода AI */
+#ai-prompt,
+#ai-response {
+  width: 100%; /* Полная ширина */
+  max-width: 600px; /* Ограничение максимальной ширины */
 }
 
-.menu__link img,
-.admin__link img {
-  width: 20px;
-  height: 20px;
-  margin-right: 15px;
-  opacity: 0.8;
+/* Ответ AI */
+#ai-response {
+  margin-top: 20px; /* Отступ сверху */
+  padding: 10px; /* Внутренние отступы */
+  border: 1px solid #ddd; /* Граница */
 }
 
-/* === ХОВЕР и АКТИВ === */
-.menu__link:hover,
-.admin__link:hover {
-  background-color: #2e2e42;
-  border-left: 4px solid #4f8ef7;
+/* Стили для сообщения об ошибке при загрузке страницы */
+.error-message {
+  color: rgb(255, 100, 100); /* Красный цвет текста для ошибки */
+  font-family: 'Roboto', Arial, sans-serif; /* Соответствует шрифту кнопок */
+  text-align: center; /* Центрирование текста */
+  padding: 20px; /* Отступы */
 }
 
-.menu__link span,
-.admin__link span {
-  font-size: 16px;
-}
-
-/* === КОНТЕНТ === */
-.content {
-  flex: 1;
-  padding: 30px;
-  overflow-y: auto;
-}
-
-/* === АДАПТИВНОСТЬ === */
+/* Адаптивность для мобильных устройств */
 @media (max-width: 768px) {
-  .menu {
-    width: 200px;
+  .sidebar {
+    width: 100%; /* Сайдбар занимает всю ширину экрана */
+    height: auto; /* Высота по содержимому */
+    position: relative; /* Снимаем фиксированное позиционирование */
   }
-
-  .menu__logo {
-    font-size: 20px;
+  #main-content {
+    margin-left: 0; /* Убираем отступ для мобильных */
+    max-width: 100%; /* Полная ширина на мобильных */
+    padding: 20px;
   }
-
-  .menu__link span,
-  .admin__link span {
-    font-size: 14px;
+  .nav {
+    padding-right: 12px; /* Меньший отступ справа */
   }
-}
-
-@media (max-width: 576px) {
-  .menu {
-    position: fixed;
-    left: -100%;
-    top: 0;
-    height: 100%;
-    z-index: 999;
-    transition: left 0.3s;
+  .nav-button {
+    width: 100%; /* Полная ширина .nav */
+    margin-bottom: 8px; /* Меньший интервал между кнопками */
   }
-
-  .menu.active {
-    left: 0;
+  .nav-button:last-child {
+    margin-bottom: 0; /* Убираем отступ снизу для последней кнопки */
   }
-
-  .content {
-    margin-left: 0;
+  .nav-button-content {
+    padding: 6px 10px; /* Меньшие внутренние отступы */
+    width: 100%; /* Ограничиваем ширину */
   }
 }
